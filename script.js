@@ -175,7 +175,7 @@ const rotateSpeed = 0.0005; // how fast mouse drag rotates
 const zoomSpeed = 0.002;   // wheel zoom sensitivity
 
 // pointer down
-renderer.domElement.addEventListener('pointerdown', (e) => {
+renderer.domElement.addEventListener('pointerdown', function(e) {
     // only left button rotate (button === 0)
     if (e.button === 0) {
     isDragging = true;
@@ -210,6 +210,61 @@ renderer.domElement.addEventListener('wheel', function(e) {
     radius = Math.max(5, Math.min(200, radius))
     updateCameraPosition()
 }, {passive : false })
+
+// ------------------------------------------
+// 🎮 BUTTON CONTROLS
+// ------------------------------------------
+
+// Lấy các button
+const btnUp = document.querySelector('.up');
+const btnDown = document.querySelector('.down');
+const btnLeft = document.querySelector('.left');
+const btnRight = document.querySelector('.right');
+const btnZoomIn = document.querySelector('.zoomIn');
+const btnZoomOut = document.querySelector('.zoomOut');
+const btnPause = document.querySelector('.pause');
+
+// Sự kiện di chuyển camera
+btnUp.addEventListener('click', () => {
+  phi -= 0.1; // xoay lên
+  updateCameraPosition();
+});
+btnDown.addEventListener('click', () => {
+  phi += 0.1; // xoay xuống
+  updateCameraPosition();
+});
+btnLeft.addEventListener('click', () => {
+  theta -= 0.1; // xoay trái
+  updateCameraPosition();
+});
+btnRight.addEventListener('click', () => {
+  theta += 0.1; // xoay phải
+  updateCameraPosition();
+});
+
+// Sự kiện zoom
+btnZoomIn.addEventListener('click', () => {
+  radius -= 2;
+  radius = Math.max(5, radius);
+  updateCameraPosition();
+});
+btnZoomOut.addEventListener('click', () => {
+  radius += 2;
+  radius = Math.min(200, radius);
+  updateCameraPosition();
+});
+
+// Sự kiện pause
+btnPause.addEventListener('click', () => {
+  if (animationID) {
+    cancelAnimationFrame(animationID);
+    animationID = null;
+    btnPause.textContent = 'Resume';
+  } else {
+    animate();
+    btnPause.textContent = 'Pause';
+  }
+});
 
 
 
