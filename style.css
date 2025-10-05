@@ -1,0 +1,32 @@
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.controls-bar {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.controls-bar div {
+    margin: 0 10px;
+}
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 80px;
+    height: 40px;
+}
